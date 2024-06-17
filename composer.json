@@ -1,0 +1,15 @@
+{
+    "require": {
+        "fakerphp/faker": "^1.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "User\\": "src/User/",
+            "Company\\": "src/Company/",
+            "Interfaces\\": "Interfaces/",
+            "Employee\\": "src/User/Employee/",
+            "RestaurantChain\\": "src/Company/RestaurantChain/",
+            "RestaurantLocation\\": "src/RestaurantLocation/"
+        }
+    }
+}
