@@ -29,7 +29,7 @@ class Employee extends User implements FileConvertible {
         $this->awards = $awards;
     }
 
-    public static function RandomGenerator(): self {
+    public static function RandomGenerator($employeeCount, $minSalary, $maxSalary, $locationNumberRange, $zipCodeRange, $employees, $restaurantLocations): self {
         $faker = \Faker\Factory::create();
         return new self(
             $faker->randomNumber(), // ここで生成されるIDはint型
@@ -43,7 +43,7 @@ class Employee extends User implements FileConvertible {
             $faker->dateTime,
             $faker->word,
             $faker->jobTitle,
-            $faker->randomFloat(2, 30000, 100000),
+            $salary ?? $faker->numberBetween($minSalary, $maxSalary),
             $faker->dateTime,
             implode(', ', $faker->words) // 配列を文字列に変換
         );

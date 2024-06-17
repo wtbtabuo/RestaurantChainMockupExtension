@@ -22,14 +22,11 @@ class RestaurantChain extends Company implements FileConvertible{
         $this->parentCompany = $parentCompany;
     }
 
-    public static function RandomGenerator(): self {
+    public static function RandomGenerator($employeeCount, $minSalary, $maxSalary, $locationNumberRange, $zipCodeRange, $employees, $restaurantLocations): self {
         $faker = \Faker\Factory::create();
-        $restaurantLocations = [];
-        $company = Company::RandomGenerator();
+        $company = Company::RandomGenerator($employeeCount, $minSalary, $maxSalary, $locationNumberRange, $zipCodeRange, $employees, $restaurantLocations);
         $parentCompany = $company->getCompanyName();
-        for ($i = 0; $i < $faker->numberBetween(1, 5); $i++) {
-            $restaurantLocations[] = RestaurantLocation::RandomGenerator();
-        }
+
         return new self(
             $faker->company,
             $faker->year,
@@ -99,10 +96,11 @@ class RestaurantChain extends Company implements FileConvertible{
 
     public function toHTML(): string {
         $restaurantLocationsHTML = '';
+        # restaurantLocationsのオブジェクトの配列をプリント
+
         foreach ($this->restaurantLocations as $restaurantLocation) {
             $restaurantLocationsHTML .= $restaurantLocation->toHTML();
         }
-
         return "<div class='restaurant-chain'>
                 <h1>{$this->parentCompany}</h1>
                 <p>Chain ID: {$this->chainId}</p>

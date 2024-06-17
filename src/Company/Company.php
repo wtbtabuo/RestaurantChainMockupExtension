@@ -36,7 +36,7 @@ class Company implements FileConvertible{
         $this->totalEmployees = $totalEmployees;
     }
 
-    public static function RandomGenerator(): self {
+    public static function RandomGenerator($employeeCount, $minSalary, $maxSalary, $locationNumberRange, $zipCodeRange, $employees, $restaurantLocations): self {
         $faker = \Faker\Factory::create();
         return new self(
             $faker->company,

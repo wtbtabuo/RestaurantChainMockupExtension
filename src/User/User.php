@@ -1,6 +1,8 @@
 <?php
 namespace User;
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 use DateTime;
 use Interfaces\FileConvertible;
 
@@ -34,7 +36,7 @@ class User implements FileConvertible {
         $this->role = $role;
     }
 
-    public static function RandomGenerator(): self {
+    public static function RandomGenerator($employeeCount, $minSalary, $maxSalary, $locationNumberRange, $zipCodeRange, $employees, $restaurantLocations): self {
         $faker = \Faker\Factory::create();
         return new self(
             $faker->randomNumber(),
